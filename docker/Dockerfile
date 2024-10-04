@@ -8,8 +8,6 @@ RUN npm install
 
 COPY ./front .
 
-RUN npm run build
-
 FROM node:22-alpine
 
 WORKDIR /app
@@ -20,15 +18,14 @@ RUN npm install
 
 COPY ./back .
 
+EXPOSE 5173
+EXPOSE 3000
 
-EXPOSE 80
+ENV ADDRESS=0.0.0.0 PORT=5173
 
-COPY --from=builder-front /app/dist /app/public
+COPY --from=builder-front /app /app/front
 
-
-ENV ADDRESS=0.0.0.0 PORT=80
-
-CMD ["npm", "start"]
+CMD ["npm", "start", "--prefix", "/app/front"]
 
 
 # FROM nginx:1.27-alpine
