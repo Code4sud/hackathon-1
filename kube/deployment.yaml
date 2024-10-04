@@ -18,7 +18,7 @@ spec:
         - name: $PROJECT_NAME
           image: $IMAGE
           ports:
-            - containerPort: 80
+            - containerPort: 5173
       #     volumeMounts:
       #       - mountPath: /root/pb_data
       #         name: data-storage
